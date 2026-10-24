@@ -1,0 +1,17 @@
+# Security (CRITICAL)
+.env
+
+# Environments
+cvenv/
+venv/
+env/
+
+# Python / Django
+__pycache__/
+*.pyc
+*.pyo
+db.sqlite3
+
+# Uploaded Media / CVs
+media/
+test_media/

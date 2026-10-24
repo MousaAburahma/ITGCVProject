@@ -1,0 +1,188 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ITG CV — Submit your CV</title>
+    <link rel="stylesheet" href="{% static 'css/cv-upload.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .top-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+      }
+      .hr-access {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13.5px;
+      }
+      .hr-access a {
+        text-decoration: none;
+        color: var(--ink);
+        font-weight: 500;
+        transition: color 0.15s ease;
+      }
+      .hr-access a:hover {
+        color: var(--amber-deep);
+      }
+      .hr-access .btn-login {
+        padding: 6px 14px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background: #fff;
+      }
+      .hr-access .btn-login:hover {
+        border-color: var(--ink);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top-nav">
+        <div class="brand" style="margin-bottom: 0;">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 12h16M4 6h10M4 18h7"
+                stroke="white"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
+          <div class="brand-name">ITG CV</div>
+        </div>
+        <div class="hr-access">
+          <span>Are you HR?</span>
+          <a href="{% url 'login' %}" class="btn-login">Sign in</a>
+          <a href="{% url 'signup' %}">Sign up</a>
+        </div>
+      </div>
+
+      <h1>Apply for this role</h1>
+      <p class="lede">
+        Upload your CV below. We'll check the file, save your details, and match
+        you against the role automatically.
+      </p>
+
+      <div class="rail" id="rail">
+        <div class="rail-step active" data-step="1">
+          <div class="rail-dot">1</div>
+          <span>Details</span>
+        </div>
+        <div class="rail-line" data-line="1"></div>
+        <div class="rail-step" data-step="2">
+          <div class="rail-dot">2</div>
+          <span>Upload</span>
+        </div>
+        <div class="rail-line" data-line="2"></div>
+        <div class="rail-step" data-step="3">
+          <div class="rail-dot">3</div>
+          <span>Done</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <form id="cvForm" action="{% url 'upload_cv' %}" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div id="view-form">
+            <div id="error-banner" class="banner error hidden">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="12" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <span id="error-text"><strong>We couldn't accept that file.</strong> Please check the format and size, then try again.</span>
+            </div>
+
+            <div class="field">
+              <label for="fullname">Full name</label>
+              <input
+                type="text"
+                id="fullname"
+                name="full_name"
+                placeholder="Jane Doe"
+                autocomplete="name"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="email">Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="jane@email.com"
+                autocomplete="email"
+                required
+              />
+            </div>
+
+            <div class="field">
+              <label for="role">Role you're applying for</label>
+              <select id="role" name="job" required>
+                {% for job in jobs %}
+                  <option value="{{ job.id }}">{{ job.title }}</option>
+                {% empty %}
+                  <option value="" disabled selected>No open roles currently available</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="field">
+              <label>CV file</label>
+              <div id="dropzone" class="dropzone">
+                <input type="file" id="fileInput" name="cv_file" accept=".pdf" required />
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M12 16V4M12 4l-4 4M12 4l4 4" />
+                  <path d="M4 16v3a1 1 0 001 1h14a1 1 0 001-1v-3" />
+                </svg>
+                <div class="dropzone-title">Drag your CV here, or click to browse</div>
+                <div class="dropzone-sub">PDF only, up to 5&nbsp;MB</div>
+              </div>
+              <div id="fileChipHolder"></div>
+              <div class="field-hint">
+                Your file is checked for format, size, and structure before it's stored.
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-primary" id="submitBtn" disabled>
+              Submit CV
+            </button>
+          </div>
+        </form>
+
+        <div id="view-confirm" class="confirm hidden">
+          <div class="confirm-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+          </div>
+          <h2>Your CV is in</h2>
+          <p id="confirmMsg">
+            Thanks — we've received your application and stored your details.
+            The hiring team will match it against the role and reach out if it's a fit.
+          </p>
+          <div class="confirm-ref" id="confirmRef">REF-000000</div>
+          <br />
+          <button class="btn btn-ghost" id="resetBtn" style="width: auto; padding: 10px 20px">
+            Submit another CV
+          </button>
+        </div>
+      </div>
+
+      <footer>ITG CV · CV Submission</footer>
+    </div>
+
+    <script src="{% static 'js/cv-upload.js' %}"></script>
+  </body>
+</html>

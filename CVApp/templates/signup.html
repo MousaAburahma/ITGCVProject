@@ -1,0 +1,103 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ITG CV — HR Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+  <body>
+    <div class="side">
+      <div class="brand">
+        <div class="mark">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M4 12h16M4 6h10M4 18h7"
+              stroke="#1c2230"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <span>ITG CV</span>
+      </div>
+      <div class="pitch">
+        <h1>Join the recruitment platform.</h1>
+        <p>
+          Create your HR account to define role criteria, monitor incoming CVs,
+          and track AI-based candidate matching in real time.
+        </p>
+      </div>
+      <div class="foot">© 2026 ITG Solutions · ITG CV · Internal HR tool</div>
+    </div>
+
+    <div class="panel-wrap">
+      <div class="login-card">
+        <h2>Create account</h2>
+        <p class="sub">
+          Register with your corporate email.
+        </p>
+
+        {% if form.errors %}
+          <div class="login-error" style="display: block;">
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                {{ error }}<br>
+              {% endfor %}
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'signup' %}">
+          {% csrf_token %}
+          <div class="field">
+            <label for="email">Work email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="name@itgsolutions.com"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+          <div class="field">
+            <label for="confirm_password">Confirm password</label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              placeholder="••••••••"
+              autocomplete="new-password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn-block" id="loginBtn">Sign up</button>
+        </form>
+
+        <div class="login-hint">
+          Already have an account? <a href="{% url 'login' %}" style="color: var(--ink); font-weight: 600;">Sign in</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="{% static 'js/login.js' %}"></script>
+  </body>
+</html>

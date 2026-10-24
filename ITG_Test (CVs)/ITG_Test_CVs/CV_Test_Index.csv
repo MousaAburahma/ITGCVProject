@@ -1,0 +1,17 @@
+Job,Candidate,Email,Intended Match Range,File
+Backend Python Developer,Omar Khaled,omar.khaled@example.com,High match,01_Backend_Python_Developer/01_Omar_Khaled.pdf
+Backend Python Developer,Lina Ahmad,lina.ahmad@example.com,High-medium match,01_Backend_Python_Developer/02_Lina_Ahmad.pdf
+Backend Python Developer,Yousef Sami,yousef.sami@example.com,Medium-low match,01_Backend_Python_Developer/03_Yousef_Sami.pdf
+Backend Python Developer,Sara Nasser,sara.nasser@example.com,Low match,01_Backend_Python_Developer/04_Sara_Nasser.pdf
+Frontend Web Developer Internship,Maya Saleh,maya.saleh@example.com,Very high match,02_Frontend_Web_Developer_Internship/01_Maya_Saleh.pdf
+Frontend Web Developer Internship,Hassan Ali,hassan.ali@example.com,Medium match,02_Frontend_Web_Developer_Internship/02_Hassan_Ali.pdf
+Frontend Web Developer Internship,Noor Fadi,noor.fadi@example.com,Medium-low match,02_Frontend_Web_Developer_Internship/03_Noor_Fadi.pdf
+Frontend Web Developer Internship,Rami Tareq,rami.tareq@example.com,Low match,02_Frontend_Web_Developer_Internship/04_Rami_Tareq.pdf
+Cloud DevOps Engineer,Kareem Haddad,kareem.haddad@example.com,Very high match,03_Cloud_DevOps_Engineer/01_Kareem_Haddad.pdf
+Cloud DevOps Engineer,Dana Mahmoud,dana.mahmoud@example.com,Medium-high match,03_Cloud_DevOps_Engineer/02_Dana_Mahmoud.pdf
+Cloud DevOps Engineer,Bilal Omar,bilal.omar@example.com,Low-medium match,03_Cloud_DevOps_Engineer/03_Bilal_Omar.pdf
+Cloud DevOps Engineer,Leen Sami,leen.sami@example.com,Very low match,03_Cloud_DevOps_Engineer/04_Leen_Sami.pdf
+Data Engineer,Ahmad Mustafa,ahmad.mustafa@example.com,Very high match,04_Data_Engineer/01_Ahmad_Mustafa.pdf
+Data Engineer,Reem Khalil,reem.khalil@example.com,Medium-high match,04_Data_Engineer/02_Reem_Khalil.pdf
+Data Engineer,Zaid Hussein,zaid.hussein@example.com,Low-medium match,04_Data_Engineer/03_Zaid_Hussein.pdf
+Data Engineer,Aya Samir,aya.samir@example.com,Low-medium match,04_Data_Engineer/04_Aya_Samir.pdf

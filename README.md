@@ -56,5 +56,6 @@ Prerequisites
 
 ```bash
 
-git clone \[https://github.com/YourUsername/ITGCVProject.git] cd ITGCVProject
+git clone \[https://github.com/MousaAburahma/ITGCVProject.git] cd ITGCVProject
+
 
